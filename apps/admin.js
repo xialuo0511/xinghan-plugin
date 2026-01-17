@@ -9,6 +9,7 @@ import path from 'path'
 import fs from 'fs'
 import { fileURLToPath } from 'url'
 import { GetTemplateHelp } from '../lib/petpet.js'
+import puppeteer from '../../../lib/puppeteer/puppeteer.js'
 
 const execAsync = promisify(exec)
 const __filename = fileURLToPath(import.meta.url)
