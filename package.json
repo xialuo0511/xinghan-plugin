@@ -1,0 +1,17 @@
+{
+  "name": "xinghan-plugin",
+  "version": "1.0.0",
+  "description": "星瀚插件 - TRSS-Yunzai 表情包生成插件",
+  "author": "xialuo",
+  "license": "MIT",
+  "main": "index.js",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/xialuo03/xinghan-plugin.git"
+  },
+  "dependencies": {
+    "@napi-rs/canvas": "^0.1.44",
+    "gif-encoder-2": "^1.0.5"
+  }
+}
