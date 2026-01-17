@@ -23,7 +23,7 @@ export default class PetpetApp extends plugin {
                     fnc: 'kiss'
                 },
                 {
-                    reg: '^#?(揉|揉揉|rub)\\s*',
+                    reg: '^#?(揉|揉揉|蹭|蹭蹭|rub)\\s*',
                     fnc: 'rub'
                 },
                 {
@@ -89,6 +89,46 @@ export default class PetpetApp extends plugin {
                 {
                     reg: '^#?(吸|嗦|suck)\\s*',
                     fnc: 'suck'
+                },
+                {
+                    reg: '^#?(爬|crawl)\\s*',
+                    fnc: 'crawl'
+                },
+                {
+                    reg: '^#?(吃|eat)\\s*',
+                    fnc: 'eat'
+                },
+                {
+                    reg: '^#?(拿|frieren_take)\\s*',
+                    fnc: 'frieren_take'
+                },
+                {
+                    reg: '^#?(击剑|fencing)\\s*',
+                    fnc: 'fencing'
+                },
+                {
+                    reg: '^#?(锤|hammer)\\s*',
+                    fnc: 'hammer'
+                },
+                {
+                    reg: '^#?(举牌2|hold|hold_sign)\\s*',
+                    fnc: 'hold_sign'
+                },
+                {
+                    reg: '^#?(远离|keep_away)\\s*',
+                    fnc: 'keep_away'
+                },
+                {
+                    reg: '^#?(故障|loading)\\s*',
+                    fnc: 'loading'
+                },
+                {
+                    reg: '^#?(鹿乃子|deer)\\s*',
+                    fnc: 'deer'
+                },
+                {
+                    reg: '^#?(寻狗启示|寻狗|lost_notice)\\s*',
+                    fnc: 'lost_notice'
                 }
             ]
         })
@@ -215,5 +255,55 @@ export default class PetpetApp extends plugin {
     /** 吸表情包 */
     async suck(e) {
         return this.HandlePetpet(e, 'suck')
+    }
+
+    /** 爬表情包 */
+    async crawl(e) {
+        return this.HandlePetpet(e, 'crawl')
+    }
+
+    /** 吃表情包 */
+    async eat(e) {
+        return this.HandlePetpet(e, 'eat')
+    }
+
+    /** 拿表情包 */
+    async frieren_take(e) {
+        return this.HandlePetpet(e, 'frieren_take')
+    }
+
+    /** 击剑表情包 */
+    async fencing(e) {
+        return this.HandlePetpet(e, 'fencing')
+    }
+
+    /** 锤表情包 */
+    async hammer(e) {
+        return this.HandlePetpet(e, 'hammer')
+    }
+
+    /** 举牌(hold)表情包 */
+    async hold_sign(e) {
+        return this.HandlePetpet(e, 'hold_sign')
+    }
+
+    /** 远离表情包 */
+    async keep_away(e) {
+        return this.HandlePetpet(e, 'keep_away')
+    }
+
+    /** 故障表情包 */
+    async loading(e) {
+        return this.HandlePetpet(e, 'loading')
+    }
+
+    /** 鹿乃子表情包 */
+    async deer(e) {
+        return this.HandlePetpet(e, 'deer')
+    }
+
+    /** 寻狗启示表情包 */
+    async lost_notice(e) {
+        return this.HandlePetpet(e, 'lost_notice')
     }
 }
