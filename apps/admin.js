@@ -9,7 +9,6 @@ import path from 'path'
 import fs from 'fs'
 import { fileURLToPath } from 'url'
 import { GetTemplateHelp } from '../lib/petpet.js'
-import puppeteer from '../../../lib/puppeteer/puppeteer.js'
 
 const execAsync = promisify(exec)
 const __filename = fileURLToPath(import.meta.url)
@@ -52,42 +51,45 @@ export default class AdminApp extends plugin {
     async help(e) {
         const templates = GetTemplateHelp()
 
-        // 读取 HTML 和 CSS 模板
-        const htmlPath = path.join(__dirname, '..', 'resources', 'html', 'help', 'help.html')
-        const cssPath = path.join(__dirname, '..', 'resources', 'html', 'help', 'help.css')
-
-        let html = fs.readFileSync(htmlPath, 'utf-8')
-        const css = fs.readFileSync(cssPath, 'utf-8')
-
-        // 生成表情包卡片 HTML
-        let stickersHtml = ''
-        for (const template of templates) {
-            const aliases = template.alias.slice(0, 4).join('、')
-            stickersHtml += `
-                <div class="sticker-card">
-                    <div class="sticker-cmd">#${template.alias[0] || template.id}</div>
-                    ${aliases ? `<div class="sticker-aliases">${aliases}</div>` : ''}
-                    ${template.description ? `<div class="sticker-desc">${template.description}</div>` : ''}
-                </div>
-            `
+        // 准备渲染数据
+        const data = {
+            templates: templates,
+            version: '1.0.0'
         }
 
-        // 替换模板变量
-        html = html.replace('{{stickers}}', stickersHtml)
+        // 使用 runtime.render 渲染
+        const img = await e.runtime.render(
+            'xinghan-plugin',
+            '/html/help/help.html',
+            data,
+            {
+                retType: 'base64',
+                beforeRender({ data }) {
+                    // 读取 CSS 内容
+                    const cssPath = path.join(pluginPath, 'resources', 'html', 'help', 'help.css')
+                    const css = fs.readFileSync(cssPath, 'utf-8')
 
-        // 将 CSS 内联到 HTML（替换外部 CSS 链接）
-        html = html.replace('<link rel="stylesheet" href="./help.css">', `<style>${css}</style>`)
+                    // 生成表情包卡片 HTML
+                    let stickersHtml = ''
+                    for (const template of data.templates) {
+                        const aliases = template.alias.slice(0, 4).join('、')
+                        stickersHtml += `
+                            <div class="sticker-card">
+                                <div class="sticker-cmd">#${template.alias[0] || template.id}</div>
+                                ${aliases ? `<div class="sticker-aliases">${aliases}</div>` : ''}
+                                ${template.description ? `<div class="sticker-desc">${template.description}</div>` : ''}
+                            </div>
+                        `
+                    }
 
-        // 使用 puppeteer 截图
-        const img = await puppeteer.screenshot('星瀚帮助', {
-            html: html,
-            fileID: 'xinghan-help',
-            modelName: 'xinghan',
-            SOptions: {
-                type: 'png',
-                quality: 100
+                    return {
+                        ...data,
+                        css: css,
+                        stickersHtml: stickersHtml
+                    }
+                }
             }
-        })
+        )
 
         await e.reply(img)
         return true
