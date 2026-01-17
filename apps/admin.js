@@ -52,9 +52,12 @@ export default class AdminApp extends plugin {
     async help(e) {
         const templates = GetTemplateHelp()
 
-        // 读取 HTML 模板
+        // 读取 HTML 和 CSS 模板
         const htmlPath = path.join(__dirname, '..', 'resources', 'html', 'help', 'help.html')
+        const cssPath = path.join(__dirname, '..', 'resources', 'html', 'help', 'help.css')
+
         let html = fs.readFileSync(htmlPath, 'utf-8')
+        const css = fs.readFileSync(cssPath, 'utf-8')
 
         // 生成表情包卡片 HTML
         let stickersHtml = ''
@@ -71,6 +74,9 @@ export default class AdminApp extends plugin {
 
         // 替换模板变量
         html = html.replace('{{stickers}}', stickersHtml)
+
+        // 将 CSS 内联到 HTML（替换外部 CSS 链接）
+        html = html.replace('<link rel="stylesheet" href="./help.css">', `<style>${css}</style>`)
 
         // 使用 puppeteer 截图
         const img = await puppeteer.screenshot('星瀚帮助', {
