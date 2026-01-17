@@ -6,6 +6,7 @@ import plugin from '../../../lib/plugins/plugin.js'
 import { exec } from 'child_process'
 import { promisify } from 'util'
 import path from 'path'
+import fs from 'fs'
 import { fileURLToPath } from 'url'
 import { GetTemplateHelp } from '../lib/petpet.js'
 
@@ -50,42 +51,38 @@ export default class AdminApp extends plugin {
     async help(e) {
         const templates = GetTemplateHelp()
 
-        let msg = '【星瀚插件帮助】\n'
-        msg += '━━━━━━━━━━━━━━\n'
-        msg += '📦 表情包指令\n'
-        msg += '━━━━━━━━━━━━━━\n'
+        // 读取 HTML 模板
+        const htmlPath = path.join(__dirname, '..', 'resources', 'html', 'help', 'help.html')
+        let html = fs.readFileSync(htmlPath, 'utf-8')
 
-        if (templates.length > 0) {
-            for (const template of templates) {
-                const aliases = template.alias.slice(0, 3).join('、')
-                msg += `▸ #${template.alias[0] || template.id}`
-                if (aliases) {
-                    msg += ` (${aliases})`
-                }
-                msg += '\n'
-            }
-        } else {
-            msg += '▸ #摸头 (摸、摸摸、rua、petpet)\n'
-            msg += '▸ #亲亲 (亲、kiss)\n'
-            msg += '▸ #拍 (拍一拍、pat)\n'
-            msg += '▸ #揉 (揉揉、rub)\n'
-            msg += '▸ #贴贴 (贴、蹭、蹭蹭)\n'
+        // 生成表情包卡片 HTML
+        let stickersHtml = ''
+        for (const template of templates) {
+            const aliases = template.alias.slice(0, 4).join('、')
+            stickersHtml += `
+                <div class="sticker-card">
+                    <div class="sticker-cmd">#${template.alias[0] || template.id}</div>
+                    ${aliases ? `<div class="sticker-aliases">${aliases}</div>` : ''}
+                    ${template.description ? `<div class="sticker-desc">${template.description}</div>` : ''}
+                </div>
+            `
         }
 
-        msg += '\n━━━━━━━━━━━━━━\n'
-        msg += '📝 使用方法\n'
-        msg += '━━━━━━━━━━━━━━\n'
-        msg += '▸ #摸头 - 使用自己头像\n'
-        msg += '▸ #摸头 @某人 - 使用对方头像\n'
+        // 替换模板变量
+        html = html.replace('{{stickers}}', stickersHtml)
 
-        msg += '\n━━━━━━━━━━━━━━\n'
-        msg += '🔧 管理指令\n'
-        msg += '━━━━━━━━━━━━━━\n'
-        msg += '▸ #星瀚帮助 - 显示此帮助\n'
-        msg += '▸ #星瀚更新 - 更新并重启(仅管理员)\n'
-        msg += '▸ #星瀚强制更新 - 强制更新(仅管理员)\n'
+        // 使用 puppeteer 截图
+        const img = await puppeteer.screenshot('星瀚帮助', {
+            html: html,
+            fileID: 'xinghan-help',
+            modelName: 'xinghan',
+            SOptions: {
+                type: 'png',
+                quality: 100
+            }
+        })
 
-        await e.reply(msg)
+        await e.reply(img)
         return true
     }
 
