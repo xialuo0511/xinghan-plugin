@@ -19,20 +19,56 @@ export default class PetpetApp extends plugin {
                     fnc: 'petpet'
                 },
                 {
-                    reg: '^#?(亲亲|亲|kiss)\\s*',
+                    reg: '^#?(亲亲|亲|kiss|热吻)\\s*',
                     fnc: 'kiss'
-                },
-                {
-                    reg: '^#?(拍|拍一拍|pat)\\s*',
-                    fnc: 'pat'
                 },
                 {
                     reg: '^#?(揉|揉揉|rub)\\s*',
                     fnc: 'rub'
                 },
                 {
-                    reg: '^#?(贴|贴贴|蹭|蹭蹭)\\s*',
-                    fnc: 'rub'
+                    reg: '^#?(扔|throw)\\s*',
+                    fnc: 'throw'
+                },
+                {
+                    reg: '^#?(打|punch)\\s*',
+                    fnc: 'punch'
+                },
+                {
+                    reg: '^#?(拍|拍一拍|pat)\\s*',
+                    fnc: 'pat'
+                },
+                {
+                    reg: '^#?(玩|play|顶)\\s*',
+                    fnc: 'play'
+                },
+                {
+                    reg: '^#?(咬|啃|bite)\\s*',
+                    fnc: 'bite'
+                },
+                {
+                    reg: '^#?(滚|roll)\\s*',
+                    fnc: 'roll'
+                },
+                {
+                    reg: '^#?(抱|hold)\\s*',
+                    fnc: 'hold'
+                },
+                {
+                    reg: '^#?(敲|knock)\\s*',
+                    fnc: 'knock'
+                },
+                {
+                    reg: '^#?(文明亲亲|decent_kiss)\\s*',
+                    fnc: 'decent_kiss'
+                },
+                {
+                    reg: '^#?(贴贴|紧贴|tightly)\\s*',
+                    fnc: 'tightly'
+                },
+                {
+                    reg: '^#?(膜拜|worship)\\s*',
+                    fnc: 'worship'
                 }
             ]
         })
@@ -43,7 +79,7 @@ export default class PetpetApp extends plugin {
      * @param {object} e - 消息事件
      * @param {string} templateId - 模板ID
      */
-    async handlePetpet(e, templateId) {
+    async HandlePetpet(e, templateId) {
         // 获取发送者ID
         const fromUserId = e.user_id
 
@@ -52,9 +88,6 @@ export default class PetpetApp extends plugin {
         const toUserId = atTarget || fromUserId
 
         try {
-            // 发送处理中提示
-            // await e.reply('正在生成表情包...')
-
             // 生成表情包
             const gifBuffer = await GeneratePetpet(templateId, fromUserId, toUserId)
 
@@ -71,21 +104,71 @@ export default class PetpetApp extends plugin {
 
     /** 摸头表情包 */
     async petpet(e) {
-        return this.handlePetpet(e, 'petpet')
+        return this.HandlePetpet(e, 'petpet')
     }
 
     /** 亲亲表情包 */
     async kiss(e) {
-        return this.handlePetpet(e, 'kiss')
-    }
-
-    /** 拍一拍表情包 */
-    async pat(e) {
-        return this.handlePetpet(e, 'pat')
+        return this.HandlePetpet(e, 'kiss')
     }
 
     /** 揉揉表情包 */
     async rub(e) {
-        return this.handlePetpet(e, 'rub')
+        return this.HandlePetpet(e, 'rub')
+    }
+
+    /** 扔表情包 */
+    async throw(e) {
+        return this.HandlePetpet(e, 'throw')
+    }
+
+    /** 打表情包 */
+    async punch(e) {
+        return this.HandlePetpet(e, 'punch')
+    }
+
+    /** 拍一拍表情包 */
+    async pat(e) {
+        return this.HandlePetpet(e, 'pat')
+    }
+
+    /** 玩表情包 */
+    async play(e) {
+        return this.HandlePetpet(e, 'play')
+    }
+
+    /** 咬表情包 */
+    async bite(e) {
+        return this.HandlePetpet(e, 'bite')
+    }
+
+    /** 滚表情包 */
+    async roll(e) {
+        return this.HandlePetpet(e, 'roll')
+    }
+
+    /** 抱表情包 */
+    async hold(e) {
+        return this.HandlePetpet(e, 'hold')
+    }
+
+    /** 敲表情包 */
+    async knock(e) {
+        return this.HandlePetpet(e, 'knock')
+    }
+
+    /** 文明亲亲表情包 */
+    async decent_kiss(e) {
+        return this.HandlePetpet(e, 'decent_kiss')
+    }
+
+    /** 贴贴表情包 */
+    async tightly(e) {
+        return this.HandlePetpet(e, 'tightly')
+    }
+
+    /** 膜拜表情包 */
+    async worship(e) {
+        return this.HandlePetpet(e, 'worship')
     }
 }
