@@ -42,10 +42,7 @@ export default class PetpetApp extends plugin {
                     reg: '^#?(玩|play|顶)\\s*',
                     fnc: 'play'
                 },
-                {
-                    reg: '^#?(咬|啃|bite)\\s*',
-                    fnc: 'bite'
-                },
+
                 {
                     reg: '^#?(滚|roll)\\s*',
                     fnc: 'roll'
@@ -89,6 +86,30 @@ export default class PetpetApp extends plugin {
                 {
                     reg: '^#?(吸|嗦|suck)\\s*',
                     fnc: 'suck'
+                },
+                {
+                    reg: '^#?(开关|control)\\s*',
+                    fnc: 'control'
+                },
+                {
+                    reg: '^#?(陪睡|coupon)\\s*',
+                    fnc: 'coupon'
+                },
+                {
+                    reg: '^#?(虎视子|deer_show)\\s*',
+                    fnc: 'deer_show'
+                },
+                {
+                    reg: '^#?(观察|jerry_hold)\\s*',
+                    fnc: 'jerry_hold'
+                },
+                {
+                    reg: '^#?(么么|jiujiu)\\s*',
+                    fnc: 'jiujiu'
+                },
+                {
+                    reg: '^#?(开门|汤姆|tom_door)\\s*',
+                    fnc: 'tom_door'
                 },
                 {
                     reg: '^#?(爬|crawl)\\s*',
@@ -197,10 +218,7 @@ export default class PetpetApp extends plugin {
         return this.HandlePetpet(e, 'play')
     }
 
-    /** 咬表情包 */
-    async bite(e) {
-        return this.HandlePetpet(e, 'bite')
-    }
+
 
     /** 滚表情包 */
     async roll(e) {
@@ -252,9 +270,34 @@ export default class PetpetApp extends plugin {
         return this.HandlePetpet(e, 'pound')
     }
 
-    /** 吸表情包 */
-    async suck(e) {
-        return this.HandlePetpet(e, 'suck')
+    /** 开关表情包 */
+    async control(e) {
+        return this.HandlePetpet(e, 'control')
+    }
+
+    /** 陪睡表情包 */
+    async coupon(e) {
+        return this.HandlePetpet(e, 'coupon')
+    }
+
+    /** 虎视子表情包 */
+    async deer_show(e) {
+        return this.HandlePetpet(e, 'deer-show')
+    }
+
+    /** 观察表情包 */
+    async jerry_hold(e) {
+        return this.HandlePetpet(e, 'jerry_hold')
+    }
+
+    /** 么么表情包 */
+    async jiujiu(e) {
+        return this.HandlePetpet(e, 'jiujiu')
+    }
+
+    /** 开门表情包 */
+    async tom_door(e) {
+        return this.HandlePetpet(e, 'tom_door')
     }
 
     /** 爬表情包 */
