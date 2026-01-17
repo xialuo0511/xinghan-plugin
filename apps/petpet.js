@@ -69,6 +69,26 @@ export default class PetpetApp extends plugin {
                 {
                     reg: '^#?(膜拜|worship)\\s*',
                     fnc: 'worship'
+                },
+                {
+                    reg: '^#?(举牌|support)\\s*',
+                    fnc: 'support'
+                },
+                {
+                    reg: '^#?(永远支持|always)\\s*',
+                    fnc: 'always'
+                },
+                {
+                    reg: '^#?(出警|police)\\s*',
+                    fnc: 'police'
+                },
+                {
+                    reg: '^#?(捣|pound)\\s*',
+                    fnc: 'pound'
+                },
+                {
+                    reg: '^#?(吸|嗦|suck)\\s*',
+                    fnc: 'suck'
                 }
             ]
         })
@@ -170,5 +190,30 @@ export default class PetpetApp extends plugin {
     /** 膜拜表情包 */
     async worship(e) {
         return this.HandlePetpet(e, 'worship')
+    }
+
+    /** 举牌表情包 */
+    async support(e) {
+        return this.HandlePetpet(e, 'support')
+    }
+
+    /** 永远支持表情包 */
+    async always(e) {
+        return this.HandlePetpet(e, 'always')
+    }
+
+    /** 出警表情包 */
+    async police(e) {
+        return this.HandlePetpet(e, 'police')
+    }
+
+    /** 捣表情包 */
+    async pound(e) {
+        return this.HandlePetpet(e, 'pound')
+    }
+
+    /** 吸表情包 */
+    async suck(e) {
+        return this.HandlePetpet(e, 'suck')
     }
 }
