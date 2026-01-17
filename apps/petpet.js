@@ -100,7 +100,7 @@ export default class PetpetApp extends plugin {
                     fnc: 'deer_show'
                 },
                 {
-                    reg: '^#?(观察|jerry_hold)\\s*',
+                    reg: '^#?(观察|杰瑞|jerry_hold|jerry)\\s*',
                     fnc: 'jerry_hold'
                 },
                 {
@@ -108,7 +108,7 @@ export default class PetpetApp extends plugin {
                     fnc: 'jiujiu'
                 },
                 {
-                    reg: '^#?(开门|汤姆|tom_door)\\s*',
+                    reg: '^#?(开门|汤姆|tom|tom_door)\\s*',
                     fnc: 'tom_door'
                 },
                 {
@@ -120,7 +120,7 @@ export default class PetpetApp extends plugin {
                     fnc: 'eat'
                 },
                 {
-                    reg: '^#?(拿|frieren_take)\\s*',
+                    reg: '^#?(拿|芙莉莲|frieren|frieren_take)\\s*',
                     fnc: 'frieren_take'
                 },
                 {
@@ -132,7 +132,7 @@ export default class PetpetApp extends plugin {
                     fnc: 'hammer'
                 },
                 {
-                    reg: '^#?(举牌2|hold|hold_sign)\\s*',
+                    reg: '^#?(举牌2|手持举牌|hold_sign)\\s*',
                     fnc: 'hold_sign'
                 },
                 {
