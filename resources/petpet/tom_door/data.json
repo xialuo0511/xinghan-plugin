@@ -1,23 +1,23 @@
 {
-  "type": "GIF",
-  "avatar": [
-    {
-      "type": "TO",
-      "pos": [
-        1,
-        1,
-        338,
-        506
-      ],
-      "style": [],
-      "round": false,
-      "avatarOnTop": true
-    }
-  ],
-  "text": [],
-  "alias": [
-    "汤姆",
-    "开门"
-  ],
-  "delay": 125
+    "type": "GIF",
+    "avatar": [
+        {
+            "type": "TO",
+            "pos": [
+                50,
+                100,
+                250,
+                350
+            ],
+            "style": [],
+            "round": false,
+            "avatarOnTop": true
+        }
+    ],
+    "text": [],
+    "alias": [
+        "汤姆",
+        "开门"
+    ],
+    "delay": 125
 }
