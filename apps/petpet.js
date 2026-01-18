@@ -258,6 +258,11 @@ export default class PetpetApp extends plugin {
         return this.HandlePetpet(e, 'pound')
     }
 
+    /** 吸表情包 */
+    async suck(e) {
+        return this.HandlePetpet(e, 'suck')
+    }
+
     /** 开关表情包 */
     async control(e) {
         return this.HandlePetpet(e, 'control')
