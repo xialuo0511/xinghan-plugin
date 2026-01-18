@@ -63,10 +63,7 @@ export default class PetpetApp extends plugin {
                     reg: '^#?(贴贴|紧贴|tightly)\\s*',
                     fnc: 'tightly'
                 },
-                {
-                    reg: '^#?(膜拜|worship)\\s*',
-                    fnc: 'worship'
-                },
+
                 {
                     reg: '^#?(举牌|support)\\s*',
                     fnc: 'support'
@@ -107,10 +104,7 @@ export default class PetpetApp extends plugin {
                     reg: '^#?(么么|jiujiu)\\s*',
                     fnc: 'jiujiu'
                 },
-                {
-                    reg: '^#?(开门|汤姆|tom|tom_door)\\s*',
-                    fnc: 'tom_door'
-                },
+
                 {
                     reg: '^#?(爬|crawl)\\s*',
                     fnc: 'crawl'
@@ -131,10 +125,7 @@ export default class PetpetApp extends plugin {
                     reg: '^#?(锤|hammer)\\s*',
                     fnc: 'hammer'
                 },
-                {
-                    reg: '^#?(举牌2|手持举牌|hold_sign)\\s*',
-                    fnc: 'hold_sign'
-                },
+
                 {
                     reg: '^#?(远离|keep_away)\\s*',
                     fnc: 'keep_away'
@@ -245,10 +236,7 @@ export default class PetpetApp extends plugin {
         return this.HandlePetpet(e, 'tightly')
     }
 
-    /** 膜拜表情包 */
-    async worship(e) {
-        return this.HandlePetpet(e, 'worship')
-    }
+
 
     /** 举牌表情包 */
     async support(e) {
@@ -295,10 +283,7 @@ export default class PetpetApp extends plugin {
         return this.HandlePetpet(e, 'jiujiu')
     }
 
-    /** 开门表情包 */
-    async tom_door(e) {
-        return this.HandlePetpet(e, 'tom_door')
-    }
+
 
     /** 爬表情包 */
     async crawl(e) {
@@ -325,10 +310,7 @@ export default class PetpetApp extends plugin {
         return this.HandlePetpet(e, 'hammer')
     }
 
-    /** 举牌(hold)表情包 */
-    async hold_sign(e) {
-        return this.HandlePetpet(e, 'hold_sign')
-    }
+
 
     /** 远离表情包 */
     async keep_away(e) {
